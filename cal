@@ -1,0 +1,26 @@
+#!/bin/bash
+
+month=`date +%m`
+year=`date +%Y`
+
+selectedMonth=$(($month+$1))
+
+if [[ $selectedMonth -gt 12 ]]
+then
+        selectedMonth=1
+        year=$(($year+1))
+fi
+
+doCal()
+{
+	if [[ $selectedMonth == $month ]]
+	then
+		cal $selectedMonth $year | awk '{ if (substr($0,1,2) == " 1")  print "                    1 "; \
+		do { prevline=$0; if (getline == 0) exit; print " "\
+		substr(prevline,0) " "; } while (1) }' | \
+		awk -v cday=`date "+%d"` '{ a=$0; sub(" "fill int(cday)" ","["fill int(cday)"]",a); print  a };'
+	else
+		cal $selectedMonth $year
+	fi
+}
+doCal
