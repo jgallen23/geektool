@@ -1,0 +1,33 @@
+An assortment of random geektool scripts
+
+bugzilla.py - shows all your bugs in a given search
+	usage: python bugzilla.py -u [url] -l [login] -p [pass] -s [search]
+
+cal - shows current month
+	usage: cal [offset]
+	cal 0 would show this month
+	cal 1 would show next month
+
+countdown - shows number of days until a given date
+	usage: python countdown.py 12/25/2009
+	
+current_track.scpt - shows currently playing iTunes track
+	usage: osascript current_track.scpt 	
+
+gmail_starred.py - shows number of starred mail in gmail
+	usage: python gmail_starred.py [email] [pass]
+
+rss.py - shows rss count
+	usage: rss.py [rss url]
+
+things_today_count - shows how many tasks today
+	usage: osascript things_today_count.scpt 
+
+things_active - shows number of tasks with tag Active and Next
+	usage: osascript things_active.scpt 
+
+things_list.scpt - shows tasks in a given list
+	usage: osascript things_list.scpt Today
+
+things_tags.scpt - shows tasks tagged with a given tag
+	usage: osascript things_tags.scpt Active
