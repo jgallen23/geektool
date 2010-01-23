@@ -2,10 +2,12 @@
 import feedparser
 import sys
 
-rss_feed = sys.argv[1]#'http://www.instapaper.com/rss/210994/5Da2BWwf1zMmuZMUHCfEGH9Xxk'
+rss_feed = sys.argv[1]
 
 d = feedparser.parse(rss_feed)
 
-print "%s %s" % (d.feed.title, len(d['entries']))
+print "%s (%d)" % (d.feed.title, len(d['entries']))
+for entry in d['entries']:
+    print entry.title.encode('ascii', 'ignore')
 
 
