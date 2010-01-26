@@ -24,7 +24,8 @@ def main(args):
     token = read_token()
 
     rtm = RTM(api_key, secret, token)
-    if token is None:
+
+    if token is None or rtm.auth.checkToken().stat != "ok":
         import webbrowser
         import time
         url = rtm.getAuthURL()
@@ -32,6 +33,7 @@ def main(args):
         webbrowser.open(url)
         time.sleep(15)
         write_token(rtm.getToken())
+
 
     search = args[0]
     tasks = rtm.tasks.getList(filter = search)

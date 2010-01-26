@@ -225,7 +225,7 @@ def indexed(seq):
 API = {
    'auth': {
        'checkToken':
-           [('auth_token',), ()],
+           [(), ()],
        'getFrob':
            [(), ()],
        'getToken':
