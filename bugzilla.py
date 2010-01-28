@@ -58,8 +58,8 @@ def main():
             b.login(options.login, options.passwd)
         bugs = b.get_bugs(options.search)
         print "Bugzilla (%s) - %s" % (options.search, len(bugs))
-        #for bug in bugs:
-            #print "%(short_desc)s (%(bug_status)s/%(resolution)s)\n  %(assigned_to)s" % bug
+        for bug in bugs:
+            print "%(short_desc)s (%(bug_status)s/%(resolution)s)\n  %(assigned_to)s" % bug
 
     else:
         parser.print_help()
