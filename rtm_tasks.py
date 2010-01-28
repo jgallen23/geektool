@@ -38,6 +38,7 @@ def main(args):
     search = args[0]
     tasks = rtm.tasks.getList(filter = search)
     print "RTM - %s" % (search)
+    filtered_tasks = []
     if hasattr(tasks.tasks, 'list'):
         lists = tasks.tasks.list if isinstance(tasks.tasks.list, list) else [tasks.tasks.list]
         for task_list in lists:
@@ -51,6 +52,8 @@ def main(args):
                 else:
                     completed = taskseries.task.completed
                 if not completed:
-                    print taskseries.name
+                    filtered_tasks.append(taskseries.name)
+    for t in reversed(filtered_tasks):
+        print t
 
 if __name__ == "__main__": main(sys.argv[1:])
