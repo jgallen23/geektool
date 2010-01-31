@@ -18,7 +18,7 @@ def write_token(token):
     f.write(token)
     f.close()
 
-def main(args):
+def get_tasks(filter):
     secret = "7a69d867fcdc2f0d"
     api_key = "44c0313c5aa5c16cf47ee93b1c4595c7"
     token = read_token()
@@ -35,9 +35,7 @@ def main(args):
         write_token(rtm.getToken())
 
 
-    search = args[0]
-    tasks = rtm.tasks.getList(filter = search)
-    print "RTM - %s" % (search)
+    tasks = rtm.tasks.getList(filter = filter)
     filtered_tasks = []
     if hasattr(tasks.tasks, 'list'):
         lists = tasks.tasks.list if isinstance(tasks.tasks.list, list) else [tasks.tasks.list]
@@ -53,7 +51,15 @@ def main(args):
                     completed = taskseries.task.completed
                 if not completed:
                     filtered_tasks.append(taskseries.name)
-    for t in reversed(filtered_tasks):
+
+    return reversed(filtered_tasks)
+
+def main(args):
+    search = args[0]
+    tasks = get_tasks(search)
+    print "RTM - %s" % (search)
+    for t in tasks:
         print t
 
 if __name__ == "__main__": main(sys.argv[1:])
+
